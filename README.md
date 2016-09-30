@@ -1,6 +1,6 @@
 
-MySQL Plugin Rewrite Status Variable Storage Engine
-===================================================
+MySQL Plugin: Rewrite Status Variable Storage Engine
+====================================================
 
 ## Synopsis
 
@@ -34,22 +34,33 @@ Some applications will try to query ```SELECT @@storage_engine;``` in MySQL 5.7 
 
 1. Download the compiled library [rewrite_status_storage_engine.so](https://github.com/alastori/mysql-plugin-rewrite-status-storage-engine/blob/master/rewrite_status_storage_engine.so)
 2. Put the library in your mysql plugin directory (the directory named by the plugin_dir system variable)
-3. Make sure the library has the right permissions:
+3. Make sure the library has the right permissions:  
   ```chmod 755 rewrite_status_storage_engine.so```
-4. Install the plugin in MySQL:
+4. Install the plugin in MySQL:  
   ```INSTALL PLUGIN rewrite_status_storage_engine SONAME 'rewrite_status_storage_engine.so';```
-5. Check if plugin is installed and active:
-  ```mysql> SHOW PLUGINS\G
-       Name: rewrite_status_storage_engine
+5. Check if plugin is installed and active:  
+  ```
+  mysql> SHOW PLUGINS\G  
+
+     Name: rewrite_status_storage_engine
    Status: ACTIVE
      Type: AUDIT
   Library: rewrite_status_storage_engine.so
-  License: GPL```
+  License: GPL  
+  ```
 
 ## How to use
 
 After installation, just try it!
 ```
+mysql> select @@version;
++-------------------------------------------+
+| @@version                                 |
++-------------------------------------------+
+| 5.7.15-enterprise-commercial-advanced-log |
++-------------------------------------------+
+1 row in set (0.00 sec)
+
 mysql>  SELECT @@storage_engine;
 +--------------------------+
 | @@default_storage_engine |
@@ -69,10 +80,11 @@ mysql> show warnings;
 
 ## Uninstall
 
-You can remove the plugin with:
+You can remove the plugin with:  
 ```mysql> UNINSTALL PLUGIN plugin 'rewrite_status_storage_engine';```
 
-Optionally remove the library ```rewrite_status_storage_engine.so```.
+Optionally remove the library:  
+```rm rewrite_status_storage_engine.so```
 
 ## Contributors
 
