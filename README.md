@@ -30,7 +30,7 @@ mysql> SHOW WARNINGS;
 
 Some applications will try to query ```SELECT @@storage_engine;``` in MySQL 5.7 and will receive the error ```ERROR 1193 (HY000): Unknown system variable 'storage_engine'```. This plugin will replace the query with ```SELECT @@default_storage_engine``` preventing the error.
 
-## Installation of compiled 64-bit library
+## Installation of compiled 64-bit library for Linux
 
 1. Download the compiled library [rewrite_status_storage_engine.so](https://github.com/alastori/mysql-plugin-rewrite-status-storage-engine/blob/master/rewrite_status_storage_engine.so)
 2. Put the library in your mysql plugin directory (the directory named by the plugin_dir system variable)
