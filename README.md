@@ -30,15 +30,16 @@ mysql> SHOW WARNINGS;
 
 Some applications will try to query ```SELECT @@storage_engine;``` in MySQL 5.7 and will receive the error ```ERROR 1193 (HY000): Unknown system variable 'storage_engine'```. This plugin will replace the query with ```SELECT @@default_storage_engine``` preventing the error.
 
-## Installation of compiled 64-bit library for Linux
+## Installation of compiled library
 
-1. Download the compiled library [rewrite_status_storage_engine.so](https://github.com/alastori/mysql-plugin-rewrite-status-storage-engine/blob/master/rewrite_status_storage_engine.so)
-2. Put the library in your mysql plugin directory (the directory named by the plugin_dir system variable)
-3. Make sure the library has the right permissions:  
+1. Put the rewrite_status_storage_engine.so library in your mysql plugin directory (the directory named by the MySQL plugin_dir system variable)
+  * If you use Linux 64-bit, you can download the compiled library [rewrite_status_storage_engine.so here](https://github.com/alastori/mysql-plugin-rewrite-status-storage-engine/raw/master/rewrite_status_storage_engine.so)
+  * If you want or need compile by yourself, put this project in plugin folder of [mysql/mysql-server](https://dev.mysql.com/doc/mysql-sourcebuild-excerpt/5.7/en/installing-development-tree.html) and compile (ex. ```cmake; make```)
+2. Make sure the library has the right permissions:  
   ```chmod 755 rewrite_status_storage_engine.so```
-4. Install the plugin in MySQL:  
+3. Install the plugin in MySQL:  
   ```INSTALL PLUGIN rewrite_status_storage_engine SONAME 'rewrite_status_storage_engine.so';```
-5. Check if plugin is installed and active:  
+4. Check if plugin is installed and active:  
   ```
   mysql> SHOW PLUGINS\G  
 
